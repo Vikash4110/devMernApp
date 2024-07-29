@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html, body {
+  overflow-x: hidden;
+}
+
+@keyframes cus_opacity {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+            
+  }
+}
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1; 
+      translate: 0 -4rem;            
+  }
+}
+@keyframes fadeInsecond {
+  from {
+      opacity: 0;                 
+      
+  }
+  to {
+      opacity: 1;
+      translate: 0 4rem;   
+                }
+}
+@keyframes fadeInthird {
+  from {
+      opacity: 0;           
+      
+  }
+  to {
+      opacity: 1;
+      translate: 0 -6rem;
+                         
+  }
+}
+.fade-in {
+  animation:fadeIn 2s forwards;
+  animation-delay: 0.1s;    
+}
+.fade-in-delay {
+  animation: fadeInsecond 2s forwards;
+  animation-delay: 0.1s;  
+  
+}
+.fade-in-delay-2{
+  animation: fadeInthird 2s forwards;
+  animation-delay: 0.1s;  
+  
+         
+}
+.custom_opacity_span_h1{
+  animation : cus_opacity 1s forwards;
+  animation-delay: 0.3s;
+ 
+}
+.custom_opacity_h1{
+  animation : cus_opacity 3s forwards;
+
+}
+.navbar-dark {
+  color: white;
+}
+
+.navbar-dark a {
+  color: white;
+}
+
+.navbar-dark a:hover {
+  color: #cccccc; /* Lighten the hover effect */
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px; /* Adjust the width as needed */
+  height: 24px; /* Adjust the height as needed */
+  /* background: url('./assets/dot-point-of-list.svg') no-repeat center center; */
+  background-size: cover;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px; /* Adjust the width as needed */
+  height: 24px; /* Adjust the height as needed */
+  /* background: url('./assets/dot-point-of-list.svg') no-repeat center center; */
+  background-size: cover;
+  cursor: pointer;
+}
