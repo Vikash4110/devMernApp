@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import RegisImg from "../assets/regis.svg"; 
 import Footer from "../components/Footer";
 import { useAuth } from "../store/auth";
-
+import { toast } from "react-toastify";
 const URL = "http://localhost:3000/api/form/contact";
 
 const Contact = () => {
@@ -55,7 +55,7 @@ const Contact = () => {
           message: "",
         });
         const responseData = await response.json();
-        alert("Form submitted successfully!");
+        toast.success("Form submitted successfully!");
         console.log(responseData);
       } else {
         console.error("API Error:", response.status, response.statusText);

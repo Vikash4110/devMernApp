@@ -3,6 +3,7 @@ import RegisImg from "../assets/regis.svg"; // Ensure this path is correct
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth"; // Import the useAuth hook
+import { toast } from "react-toastify";
 
 const URL = "http://localhost:3000/api/auth/login";
 
@@ -15,13 +16,11 @@ const Login = () => {
   });
 
   const handleInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setCredentials({
-      ...credentials,
+    const { name, value } = e.target;
+    setCredentials((prev) => ({
+      ...prev,
       [name]: value,
-    });
+    }));
   };
 
   // Handle form on submit
@@ -38,19 +37,21 @@ const Login = () => {
         body: JSON.stringify(credentials),
       });
 
+      const responseData = await response.json();
       if (response.ok) {
-        const responseData = await response.json();
-        console.log("after login: ", responseData);
         storeTokenInLS(responseData.token); // Update the context state
+        toast.success("Login Successfully")
+
         navigate("/");
       } else {
-        const errorData = await response.json();
-        console.error("Error inside response: ", errorData);
-        alert("Login failed: " + (errorData.message || "Please try again."));
+        // Use responseData instead of responseData
+        toast.error(responseData.extraDetails ? responseData.extraDetails : responseData.message);
+
+        console.log("Invalid Credentials");
       }
     } catch (error) {
       console.log("Login error: ", error);
-      alert("An error occurred. Please try again.");
+      alert("An error occurred. Please try again."); // Alert generic error message
     }
   };
 
@@ -63,7 +64,7 @@ const Login = () => {
           <div className="lg:w-1/2 bg-black flex items-center justify-center">
             <img
               src={RegisImg}
-              alt="a person logging in"
+              alt="A person logging in"
               className="object-cover h-full"
             />
           </div>
@@ -94,7 +95,10 @@ const Login = () => {
                   required
                 />
               </div>
-              <button type="submit" className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300">
+              <button
+                type="submit"
+                className="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300"
+              >
                 Login
               </button>
             </form>

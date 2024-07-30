@@ -11,6 +11,7 @@ const services = async (req, res) => {
         console.log(`Services Error: ${error}`);
         res.status(500).json({ msg: 'Internal server error' });
     }
-}
+};
 
 module.exports = services;
+
