@@ -6,7 +6,8 @@ const contactRoute = require('./router/contact-router');
 const serviceRoute = require('./router/service-router');
 const connectDb = require('./utils/db');
 const errorMiddleware = require('./middlewares/error-middleware');
-
+const favicon = require('serve-favicon');
+const path = require('path');
 const app = express(); 
 const Port = process.env.PORT || 3000;
 
@@ -18,6 +19,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Log the routes being used
 app.use('/api/auth', authRoute);

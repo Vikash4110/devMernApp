@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth"; // Import the useAuth hook
 import { toast } from "react-toastify";
 
-const URL = "http://localhost:3000/api/auth/login";
+// const URL = "http://localhost:3000/api/auth/login";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Login = () => {
     console.log(credentials);
 
     try {
-      const response = await fetch(URL, {
+      const response = await fetch(`${backendUrl}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

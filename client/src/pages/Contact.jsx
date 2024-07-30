@@ -3,7 +3,8 @@ import RegisImg from "../assets/regis.svg";
 import Footer from "../components/Footer";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
-const URL = "http://localhost:3000/api/form/contact";
+// const URL = "http://localhost:3000/api/form/contact";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Contact = () => {
   const { user } = useAuth(); // Assuming useAuth returns an object with user
@@ -40,7 +41,7 @@ const Contact = () => {
     console.log(contact);
 
     try {
-      const response = await fetch(URL, {
+      const response = await fetch(`${backendUrl}/api/auth/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

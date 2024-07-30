@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth"; // Import useAuth correctly
 import { toast } from "react-toastify";
 
-const URL = "http://localhost:3000/api/auth/register";
+// const URL = "http://localhost:3000/api/auth/register";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Register = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(URL, {
+      const response = await fetch(`${backendUrl}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
