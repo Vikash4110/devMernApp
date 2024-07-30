@@ -12,7 +12,7 @@ const app = express();
 const Port = process.env.PORT || 3000;
 
 const corsOptions = {
-    origin: 'https://chaintech-network-nine.vercel.app/',
+    origin: 'http://localhost:5173',
     methods: 'GET, POST, PUT, DELETE, PATCH, HEAD',
     credentials: true,
 };
