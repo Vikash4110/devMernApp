@@ -2,10 +2,17 @@ import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css"; // Make sure to import AOS styles
 import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
+import { useAuth } from "../store/auth";
+
+
 const About = () => {
   useEffect(() => {
     AOS.init();
   }, []);
+
+  const { user } = useAuth();
+
 
   return (
     <>
@@ -16,6 +23,7 @@ const About = () => {
           <h1 className="text-4xl font-bold text-center mb-6 text-blue-600" data-aos="fade-down">
             About Me
           </h1>
+          <p>Welcome {user ?  user.username : `to our website `} </p>
           <p className="text-center text-gray-600 mb-12" data-aos="fade-up">
             I am a passionate and dedicated software developer with a focus on creating dynamic and user-friendly web applications. My goal is to leverage technology to solve real-world problems and enhance user experiences.
           </p>
@@ -70,6 +78,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      <Footer/>
     </>
   );
 };

@@ -1,13 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RegisImg from "../assets/regis.svg"; 
 import Footer from "../components/Footer";
+import { useAuth } from "../store/auth";
+
+const URL = "http://localhost:3000/api/form/contact";
 
 const Contact = () => {
+  const { user } = useAuth(); // Assuming useAuth returns an object with user
   const [contact, setContact] = useState({
-    username: "",
+    username: "", 
     email: "",
     message: "",
   });
+  const [userData, setUserData] = useState(true);
+
+  useEffect(() => {
+    if (userData && user) {
+      setContact({
+        username: user.username,
+        email: user.email,
+        message: "",
+      });
+      setUserData(false);
+    }
+  }, [userData, user]);
 
   const handleInput = (e) => {
     const name = e.target.name;
@@ -19,14 +35,39 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(contact);
+
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(contact),
+      });
+
+      if (response.ok) {
+        setContact({
+          username: "",
+          email: "",
+          message: "",
+        });
+        const responseData = await response.json();
+        alert("Form submitted successfully!");
+        console.log(responseData);
+      } else {
+        console.error("API Error:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error("Network Error:", error);
+    }
   };
 
   return (
     <>
-    <br />
+      <br />
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto text-center">
           <h1 className="text-4xl font-bold text-gray-800 mb-6">Contact Us</h1>
@@ -119,7 +160,7 @@ const Contact = () => {
           ></iframe>
         </section>
       </section>
-      <Footer/>
+      <Footer />
     </>
   );
 };
