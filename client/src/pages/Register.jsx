@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth"; // Import useAuth correctly
 import { toast } from "react-toastify";
 
-// const URL = "http://localhost:3000/api/auth/register";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Register = () => {
@@ -15,7 +14,7 @@ const Register = () => {
     email: "",
     phone: "",
     password: "",
-  }); 
+  });
   const { storeTokenInLS } = useAuth(); // Destructure storeTokenInLS from useAuth
 
   const handleInput = (e) => {
@@ -26,6 +25,11 @@ const Register = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!backendUrl) {
+      toast.error("Backend URL is not defined. Please check your environment variables.");
+      return;
+    }
+
     try {
       const response = await fetch(`${backendUrl}/api/auth/register`, {
         method: "POST",
@@ -34,17 +38,22 @@ const Register = () => {
         },
         body: JSON.stringify(user),
       });
+
+      if (!response.ok) {
+        const res_data = await response.json();
+        const errorMessage = res_data.extraDetails ? res_data.extraDetails : res_data.message;
+        throw new Error(errorMessage);
+      }
+
       const res_data = await response.json();
-      if (response.ok) {
-        storeTokenInLS(res_data.token);
-        setUser({ username: "", email: "", phone: "", password: "" });
-        toast.success("Registered Successfully")
-        navigate("/"); // Redirect to login page on successful registration
-      } else {
-        toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message)}
+      storeTokenInLS(res_data.token);
+      setUser({ username: "", email: "", phone: "", password: "" });
+      toast.success("Registered Successfully");
+      navigate("/"); // Redirect to the home page on successful registration
+
     } catch (error) {
-      console.log("Register error: ", error);
-      toast.error("An error occurred. Please try again."); // Use toast for error message
+      console.error("Register error: ", error);
+      toast.error(error.message || "An error occurred. Please try again.");
     }
   };
 
