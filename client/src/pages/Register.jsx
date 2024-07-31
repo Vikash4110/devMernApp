@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth"; // Import useAuth correctly
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -99,9 +100,9 @@ const Register = () => {
             <div className="mt-4 text-center">
               <p className="text-gray-600">
                 Already have an account?{" "}
-                <a href="/login" className="text-blue-600 hover:underline">
+                <Link to="/login" className="text-blue-600 hover:underline">
                   Login
-                </a>
+                </Link>
               </p>
             </div>
           </div>
