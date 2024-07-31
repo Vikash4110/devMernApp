@@ -7,7 +7,8 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [user, setUser] = useState(null);
   const [services, setServices] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(true);
+  const authorizationToken = `Bearer ${token}`;
   useEffect(() => {
     localStorage.setItem("token", token);
   }, [token]);
@@ -24,18 +25,21 @@ export const AuthProvider = ({ children }) => {
 
   // JWT Authentication - to get the currently logged-in user data
   const userAuthentication = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(`${backendUrl}/api/auth/user`, {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: authorizationToken,
         },
       });
 
       if (response.ok) {
         const data = await response.json();
         setUser(data.userData);
+        setIsLoading(false);
       } else {
+        setIsLoading(false);
         console.error("Error fetching user data");
       }
     } catch (error) {
@@ -69,7 +73,7 @@ export const AuthProvider = ({ children }) => {
   console.log("isLoggedIn", isLoggedIn);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, logoutUser, user, services }}>
+    <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, logoutUser, user, services, authorizationToken, isLoading }}>
       {children}
     </AuthContext.Provider>
   );

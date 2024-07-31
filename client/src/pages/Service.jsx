@@ -16,13 +16,13 @@ const Service = () => {
     <>
       <br /><br />
       <section className="py-12 bg-gradient-to-r from-blue-50 to-blue-100">
-        <div className="container mx-auto text-center">
-          <h1 className="text-5xl font-bold mb-8 text-blue-900">Our Services</h1>
-          <p className="text-lg text-blue-700 mb-12">
+        <div className="container mx-auto text-center px-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-blue-900">Our Services</h1>
+          <p className="text-base md:text-lg text-blue-700 mb-12">
             Explore our range of professional services tailored to your needs.
           </p>
         </div>
-        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
           {services.map((curElem, index) => (
             <div
               className={`bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105 p-6 border-t-4 ${
@@ -39,13 +39,13 @@ const Service = () => {
                 />
               </div>
               <div className="flex justify-between items-center mb-4">
-                <p className="text-lg font-medium text-gray-700">{curElem.provider}</p>
-                <p className="text-lg font-semibold text-green-600">{curElem.price}</p>
+                <p className="text-sm md:text-lg font-medium text-gray-700">{curElem.provider}</p>
+                <p className="text-sm md:text-lg font-semibold text-green-600">{curElem.price}</p>
               </div>
-              <h2 className="text-2xl font-bold text-blue-800 mb-2">{curElem.service}</h2>
-              <p className="text-gray-600 mb-4">{curElem.description}</p>
+              <h2 className="text-xl md:text-2xl font-bold text-blue-800 mb-2">{curElem.service}</h2>
+              <p className="text-sm md:text-base text-gray-600 mb-4">{curElem.description}</p>
               <button
-                className={`px-4 py-2 text-white rounded-lg transition-colors duration-300 ${
+                className={`px-3 py-2 text-sm md:text-base text-white rounded-lg transition-colors duration-300 ${
                   index % 2 === 0
                     ? "bg-blue-600 hover:bg-blue-700"
                     : "bg-green-600 hover:bg-green-700"
