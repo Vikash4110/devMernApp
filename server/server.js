@@ -12,10 +12,11 @@ const app = express();
 const Port = process.env.PORT || 3000;
 
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'https://chaintech-network-black.vercel.app'], // Add your deployed frontend URL here
     methods: 'GET, POST, PUT, DELETE, PATCH, HEAD',
     credentials: true,
 };
+
 
 app.use(cors(corsOptions));
 app.use(express.json());

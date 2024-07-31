@@ -3,7 +3,6 @@ import RegisImg from "../assets/regis.svg";
 import Footer from "../components/Footer";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
-// const URL = "http://localhost:3000/api/form/contact";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Contact = () => {
