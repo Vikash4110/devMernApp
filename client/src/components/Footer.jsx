@@ -23,9 +23,9 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col md:flex-row items-center">
-          <a href="/about" className="text-gray-400 hover:text-gray-300 mx-2">About</a>
-          <a href="/services" className="text-gray-400 hover:text-gray-300 mx-2">Services</a>
-          <a href="/contact" className="text-gray-400 hover:text-gray-300 mx-2">Contact</a>
+          <Link to="/about" className="text-gray-400 hover:text-gray-300 mx-2">About</Link>
+          <Link to="/services" className="text-gray-400 hover:text-gray-300 mx-2">Services</Link>
+          <Link to="/contact" className="text-gray-400 hover:text-gray-300 mx-2">Contact</Link>
         </div>
       </div>
 
