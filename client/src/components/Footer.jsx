@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from 'react-icons/fa';
-
+import { Link } from "react-dom";
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white p-6">
