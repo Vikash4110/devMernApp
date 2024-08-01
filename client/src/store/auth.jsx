@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const AuthContext = createContext();
@@ -9,6 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [services, setServices] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const authorizationToken = `Bearer ${token}`;
+
   useEffect(() => {
     localStorage.setItem("token", token);
   }, [token]);
@@ -20,10 +22,9 @@ export const AuthProvider = ({ children }) => {
   const logoutUser = () => {
     setToken("");
     localStorage.removeItem("token");
-    setUser(null); // Optional: Clear user data on logout
+    setUser(null);
   };
 
-  // JWT Authentication - to get the currently logged-in user data
   const userAuthentication = async () => {
     setIsLoading(true);
     try {
@@ -37,13 +38,13 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         setUser(data.userData);
-        setIsLoading(false);
       } else {
-        setIsLoading(false);
         console.error("Error fetching user data");
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -54,7 +55,7 @@ export const AuthProvider = ({ children }) => {
       });
       if (response.ok) {
         const services = await response.json();
-        setServices(services.msg); // Ensure you are accessing the correct field from response
+        setServices(services.msg);
       } else {
         console.error("Error fetching services data");
       }
@@ -66,11 +67,9 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     userAuthentication();
     getServiceData();
-  }, []);
+  }, [authorizationToken]);
 
   const isLoggedIn = !!token;
-  console.log("token", token);
-  console.log("isLoggedIn", isLoggedIn);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, logoutUser, user, services, authorizationToken, isLoading }}>

@@ -38,7 +38,7 @@ const AdminLayout = () => {
                 </Link>
               </li>
               <li className="hover:bg-blue-700 p-2 rounded">
-                <Link to="/service" className="flex items-center space-x-2">
+                <Link to="/admin/services" className="flex items-center space-x-2">
                   <RiCustomerServiceFill />
                   <span>Services</span>
                 </Link>

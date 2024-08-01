@@ -1,3 +1,4 @@
+// src/App.jsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -13,13 +14,16 @@ import AdminLayout from "./components/layouts/AdminLayout";
 import AdminUsers from "./pages/AdminUsers";
 import AdminContacts from "./pages/AdminContacts";
 import AdminUpdate from "./pages/AdminUpdate";
-
+import AdminServices from "./pages/AdminServices";
+import AdminAddService from "./pages/AdminAddService";
+import AdminEditService from "./pages/AdminEditService";
+import UserDashboard from "./pages/UserDashboard"; // Import UserDashboard
 
 const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <ScrollToTop/>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -28,11 +32,14 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/dashboard" element={<UserDashboard />} /> {/* Add UserDashboard route */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="users" element={<AdminUsers />} />
           <Route path="contacts" element={<AdminContacts />} />
+          <Route path="services" element={<AdminServices />} />
+          <Route path="services/add" element={<AdminAddService />} />
+          <Route path="services/:id/edit" element={<AdminEditService />} />
           <Route path="users/:id/edit" element={<AdminUpdate />} />
-
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>

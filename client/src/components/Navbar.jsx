@@ -21,13 +21,16 @@ const Navbar = () => {
           VikashBharal
         </Link>
         <div className="hidden md:flex flex-grow justify-center items-center space-x-8">
-          <Link to="/about" className=" font-bold text-sm md:text-base hover:text-blue-700 transition-colors duration-300">About Us</Link>
+          <Link to="/about" className="font-bold text-sm md:text-base hover:text-blue-700 transition-colors duration-300">About Us</Link>
           <Link to="/service" className="font-bold text-sm md:text-base hover:text-blue-700 transition-colors duration-300">Services</Link>
           <Link to="/contact" className="font-bold text-sm md:text-base hover:text-blue-700 transition-colors duration-300">Contact Us</Link>
         </div>
         <div className="hidden md:flex items-center space-x-4">
           {isLoggedIn ? (
-            <Link to="/logout" className="bg-red-500 text-white font-bold text-sm md:text-base px-2 py-1 rounded hover:bg-red-700 transition-colors duration-300 transform hover:scale-105">Logout</Link>
+            <>
+              <Link to="/dashboard" className="bg-yellow-500 text-white font-bold text-sm md:text-base px-2 py-1 rounded hover:bg-yellow-700 transition-colors duration-300 transform hover:scale-105">Dashboard</Link>
+              <Link to="/logout" className="bg-red-500 text-white font-bold text-sm md:text-base px-2 py-1 rounded hover:bg-red-700 transition-colors duration-300 transform hover:scale-105">Logout</Link>
+            </>
           ) : (
             <>
               <Link to="/login" className="bg-green-500 text-white font-bold text-sm md:text-base px-2 py-1 rounded hover:bg-green-700 transition-colors duration-300 transform hover:scale-105">Login</Link>
@@ -55,7 +58,10 @@ const Navbar = () => {
           <Link to="/service" className="block font-bold text-sm hover:text-blue-700 transition-colors duration-300" onClick={() => setIsOpen(false)}>Services</Link>
           <Link to="/contact" className="block font-bold text-sm hover:text-blue-700 transition-colors duration-300" onClick={() => setIsOpen(false)}>Contact Us</Link>
           {isLoggedIn ? (
-            <Link to="/logout" className="block font-bold text-sm hover:text-blue-700 transition-colors duration-300" onClick={() => setIsOpen(false)}>Logout</Link>
+            <>
+              <Link to="/dashboard" className="block bg-yellow-500 text-white font-bold text-sm w-28 px-2 py-1 rounded hover:bg-yellow-700 transition-colors duration-300 transform hover:scale-105" onClick={() => setIsOpen(false)}>Dashboard</Link>
+              <Link to="/logout" className="block font-bold text-sm hover:text-blue-700 transition-colors duration-300" onClick={() => setIsOpen(false)}>Logout</Link>
+            </>
           ) : (
             <>
               <Link to="/login" className="block bg-green-500 text-white font-bold text-sm w-28 px-2 py-1 rounded hover:bg-green-700 transition-colors duration-300 transform hover:scale-105" onClick={() => setIsOpen(false)}>Login</Link>
