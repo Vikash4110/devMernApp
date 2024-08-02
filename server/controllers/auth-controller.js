@@ -66,11 +66,10 @@ const user = async (req, res) => {
 // User Profile Logic
 const userProfile = async (req, res) => {
   try {
-    const userData = req.user;
-    return res.status(200).json({ userData });
+    const users = await User.find({}, { password: 0 });
+    res.status(200).json({ users });
   } catch (error) {
-    console.error(`Error fetching user profile: ${error}`);
-    res.status(500).json({ message: "Internal Server Error" });
+    next(error);
   }
 };
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from 'react-router-dom';
 import RegisImg from "../assets/regis.svg"; 
 import Footer from "../components/Footer";
 import { useAuth } from "../store/auth";
@@ -9,13 +9,14 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export default function AdminUpdate() {
     
    const [data, setData] = useState({
-    username : "",
-    email : "", 
-    phone : "",
+    username: "",
+    email: "", 
+    phone: "",
    });
 
    const params = useParams();
    const { authorizationToken } = useAuth();
+   const navigate = useNavigate();
 
    const getSingleUserData = async () => {
     try {
@@ -45,7 +46,7 @@ export default function AdminUpdate() {
 
     setData({
         ...data,
-        [name] : value,
+        [name]: value,
     });
    };
 
@@ -54,16 +55,16 @@ export default function AdminUpdate() {
 
     try {
        const response = await fetch(`${backendUrl}/api/admin/user/update/${params.id}`, {
-        method : "PATCH", 
-        headers : {
+        method: "PATCH", 
+        headers: {
             "Content-Type": "application/json",
             Authorization: authorizationToken,
         },
         body: JSON.stringify(data),
        });
-
-       if(response.ok) {
+       if (response.ok) {
           toast.success("Updated Successfully");
+          navigate('/admin/users'); // Redirect to /admin/users page upon successful update
        } else {
           toast.error("Not Updated");
        }

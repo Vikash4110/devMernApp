@@ -2,7 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion"; // Importing Framer Motion for animations
+import ContentLoader from 'react-content-loader';
 import { FaUser, FaEnvelope, FaPhone } from 'react-icons/fa'; // Importing icons
+
+const MyLoader = () => (
+  <ContentLoader viewBox="0 0 300 70">
+    {/* Only SVG shapes */}
+    <rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
+    <rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
+    <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
+  </ContentLoader>
+);
 
 const UserDashboard = () => {
   const [userData, setUserData] = useState(null);
@@ -15,7 +25,7 @@ const UserDashboard = () => {
         const response = await fetch(`${backendUrl}/api/auth/user`, {
           method: 'GET',
           headers: {
-            Authorization: authorizationToken,
+            Authorization: authorizationToken
           },
         });
 
@@ -35,7 +45,11 @@ const UserDashboard = () => {
   }, [authorizationToken, backendUrl]);
 
   if (!userData) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <MyLoader />
+      </div>
+    );
   }
 
   return (
