@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 import { Link } from 'react-router-dom';
+import { Instagram } from 'react-content-loader'
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
@@ -63,7 +64,7 @@ const AdminUsers = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return  <Instagram />;
   }
 
   if (users.length === 0) {

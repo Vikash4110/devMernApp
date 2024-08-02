@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
-import { motion } from "framer-motion"; // Importing Framer Motion for animations
-import ContentLoader from 'react-content-loader';
-import { FaUser, FaEnvelope, FaPhone } from 'react-icons/fa'; // Importing icons
-
-const MyLoader = () => (
-  <ContentLoader viewBox="0 0 300 70">
-    {/* Only SVG shapes */}
-    <rect x="0" y="0" rx="5" ry="5" width="70" height="70" />
-    <rect x="80" y="17" rx="4" ry="4" width="300" height="13" />
-    <rect x="80" y="40" rx="3" ry="3" width="250" height="10" />
-  </ContentLoader>
-);
+import { motion } from "framer-motion";
+import { Instagram } from 'react-content-loader';
+import { FaUser, FaEnvelope, FaPhone, FaEdit } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
   const [userData, setUserData] = useState(null);
   const { authorizationToken } = useAuth();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -47,7 +40,7 @@ const UserDashboard = () => {
   if (!userData) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <MyLoader />
+        <Instagram />
       </div>
     );
   }
@@ -67,7 +60,7 @@ const UserDashboard = () => {
 
         <div className="bg-white shadow-md rounded-lg p-4">
           <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Profile Information</h2>
-          <div className="flex flex-col items-center"> {/* Centering the details */}
+          <div className="flex flex-col items-center">
             <motion.div 
               className="bg-blue-100 p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-200 mb-4 flex items-center w-full max-w-md"
               initial={{ opacity: 0, y: -20 }}
@@ -105,6 +98,14 @@ const UserDashboard = () => {
               </div>
             </motion.div>
             {/* Add more fields as needed */}
+          </div>
+          <div className="flex justify-center mt-6">
+            <button
+              className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition duration-300 flex items-center"
+              onClick={() => navigate("/update-profile")}
+            >
+              <FaEdit className="mr-2" /> Update Profile
+            </button>
           </div>
         </div>
       </div>

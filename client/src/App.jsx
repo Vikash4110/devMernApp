@@ -18,6 +18,7 @@ import AdminServices from "./pages/AdminServices";
 import AdminAddService from "./pages/AdminAddService";
 import AdminEditService from "./pages/AdminEditService";
 import UserDashboard from "./pages/UserDashboard"; // Import UserDashboard
+import UpdateUser from "./pages/UpdateUser";
 
 const App = () => {
   return (
@@ -32,7 +33,8 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/dashboard" element={<UserDashboard />} /> {/* Add UserDashboard route */}
+        <Route path="/dashboard" element={<UserDashboard />} /> 
+        <Route path="/update-profile" element={<UpdateUser />} />{/* Add UserDashboard route */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route path="users" element={<AdminUsers />} />
           <Route path="contacts" element={<AdminContacts />} />
