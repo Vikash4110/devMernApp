@@ -1,8 +1,3 @@
-# Chaintech Network Project
-
-## Overview
-
-This project was developed for Chaintech Network as part of an assignment I received after applying for an internship on Internshala. It showcases my skills as a full-stack developer, utilizing the MERN stack to create a dynamic and interactive web application.
 
 ## Technologies Used
 
