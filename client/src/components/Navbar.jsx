@@ -24,6 +24,9 @@ const Navbar = () => {
           <Link to="/about" className="font-bold text-sm md:text-base hover:text-blue-700 transition-colors duration-300">About Us</Link>
           <Link to="/service" className="font-bold text-sm md:text-base hover:text-blue-700 transition-colors duration-300">Services</Link>
           <Link to="/contact" className="font-bold text-sm md:text-base hover:text-blue-700 transition-colors duration-300">Contact Us</Link>
+          <Link to="/blogs" className="font-bold text-sm md:text-base hover:text-blue-700 transition-colors duration-300">Ptu Blogs</Link>
+          <Link to="/my-blogs" className="font-bold text-sm md:text-base hover:text-blue-700 transition-colors duration-300">My Blogs</Link>
+
         </div>
         <div className="hidden md:flex items-center space-x-4">
           {isLoggedIn ? (

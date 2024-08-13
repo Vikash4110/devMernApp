@@ -8,6 +8,8 @@ const connectDb = require('./utils/db');
 const errorMiddleware = require('./middlewares/error-middleware');
 const favicon = require('serve-favicon');
 const adminRoute = require("./router/admin-router");
+const blogRouter = require("./router/blog-router");
+const teacherRouter = require("./router/teacher-router");
 const path = require('path');
 
 const app = express(); 
@@ -27,6 +29,8 @@ app.use('/api/auth', authRoute);
 app.use('/api/form', contactRoute);
 app.use('/api/data', serviceRoute);
 app.use('/api/admin', adminRoute);
+app.use('/api/teacher', teacherRouter);
+app.use('/api/blogs', blogRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');

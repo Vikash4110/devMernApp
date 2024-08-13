@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
-import RegisImg from "../assets/regis.svg"; 
-import Footer from "../components/Footer";
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 const backendUrl = import.meta.env.VITE_BACKEND_URL;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 import { Link } from 'react-router-dom';
-import { Instagram } from 'react-content-loader'
+import { Instagram } from 'react-content-loader';
 
 const AdminUsers = () => {
   const [users, setUsers] = useState([]);
